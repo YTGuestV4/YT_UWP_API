@@ -66,5 +66,3 @@ Execute Function C#:
 `compiler` https://github.com/roblox/luau/
 
 `project` Nezy#9092
-
-`Dumper offset` U_M9
