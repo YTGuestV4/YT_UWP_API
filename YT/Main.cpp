@@ -61,19 +61,19 @@ void int_s()
 	)--";
 
 	Execution::run_script(exthread, (lua_State*)luaL_newstate(), Script);
-} 
+}
 
-void print_f(int type , std::string msg)
+void print_f(int type, std::string msg)
 {
 	Addresses::r_lua_print(type, msg.c_str());
-	Sleep(100);
+	Sleep(500);
 }
 
 int main()
 {
 	print_f(0, "YT: Start");
 
-	exthread = (uintptr_t)LuaState::get_robloxstate();
+	exthread = (uintptr_t)LuaState::get_roblox_state();
 	print_f(0, "pass: get_robloxstate");
 
 	Lua::setlevel(exthread, 8);
@@ -87,7 +87,7 @@ int main()
 	print_f(0, "Pass: AutoExec!");
 
 	//int_s();
-	//Sleep(1200);
+	Sleep(1200);
 
 	Execution::run_script(exthread, (lua_State*)luaL_newstate(), "printidentity()");
 	Execution::run_script(exthread, (lua_State*)luaL_newstate(), "print('Ready')");
