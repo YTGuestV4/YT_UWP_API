@@ -11,6 +11,14 @@
 
 bool teleport = false;
 
+int aslr_(uintptr_t address)
+{
+    return address + reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+}
+
+uint64_t check_PlaceId() {
+    return Addresses::check_PlaceId;
+}
 
 std::string ReadFromFile(const char* filePath) {
     std::ifstream file(filePath);
@@ -23,8 +31,22 @@ std::string ReadFromFile(const char* filePath) {
     return "";
 }
 
+std::string GetUsernameFromEnvironment() {
+    char userProfile[MAX_PATH];
+    if (GetEnvironmentVariableA("USERPROFILE", userProfile, sizeof(userProfile)) != 0) {
+        std::string profilePath(userProfile);
+        size_t pos = profilePath.find_last_of("\\");
+        if (pos != std::string::npos) {
+            return profilePath.substr(pos + 1);
+        }
+    }
+    return "Unknown";
+}
+
 int autoexec() {
-    std::string Path = std::string(getenv("USERPROFILE")) + "\\AppData\\Local\\Packages\\ROBLOXCORPORATION.ROBLOX_55nm5eh3cm0pr\\AC\\autoexec";
+    std::string username = GetUsernameFromEnvironment();
+    std::string Path = "C:\\Users\\" + username + "\\AppData\\Local\\Packages\\ROBLOXCORPORATION.ROBLOX_55nm5eh3cm0pr\\AC\\autoexec\\";
+
     for (const auto& entry : std::filesystem::directory_iterator(Path)) {
         if (entry.is_regular_file()) {
             std::string filePath = entry.path().string();
@@ -38,21 +60,22 @@ int autoexec() {
     }
 }
 
-void update_Roblox_State1_in()
+void URS()
 {
-    exthread = (uintptr_t)LuaState::get_robloxstate();
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    exthread = (uintptr_t)LuaState::get_roblox_state();
+    Lua::Bypass(exthread);
     Lua::setlevel(exthread, 8);
-    Addresses::r_lua_print(0, "YT Ready");
     autoexec();
+    Addresses::r_lua_print(0, "YT Ready");
 }
 
 void detected_teleport_in() {
-    if (exthread != LuaState::get_robloxstate()) {
+    if (exthread != LuaState::get_roblox_state() && check_PlaceId() != 0) {
         if (!teleport) {
             teleport = true;
-            std::this_thread::sleep_for(std::chrono::milliseconds(6000));
-            update_Roblox_State1_in();
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            URS();
             teleport = false;
         }
     }
@@ -64,11 +87,8 @@ void detected_teleport_in() {
 void start_in() {
     while (true) {
         if (!teleport) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             detected_teleport_in();
-        }
-        else {
-            std::this_thread::sleep_for(std::chrono::milliseconds(5000));
         }
     }
 }
