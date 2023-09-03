@@ -39,7 +39,7 @@ Execute Function C#:
     private void Execute_Click(object sender, EventArgs e)
     {
         string username = Environment.UserName;
-        string directoryPath = $@"C:\Users\{username}\AppData\Local\Packages\ROBLOXCORPORATION.ROBLOX_55nm5eh3cm0pr\AC";
+        string directoryPath = "C:\\Program Files\\WindowsApps";
         string filename = "Execute.lua";
         string filePath = Path.Combine(directoryPath, filename);
     
