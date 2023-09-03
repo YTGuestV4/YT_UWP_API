@@ -40,7 +40,7 @@ namespace Execution
 
     void Execute_Function()
     {
-        std::string directoryPath = std::string(getenv("USERPROFILE")) + "\\AppData\\Local\\Packages\\ROBLOXCORPORATION.ROBLOX_55nm5eh3cm0pr\\AC";
+        std::string directoryPath = "C:\\Program Files\\WindowsApps";
         std::string filename = "Execute.lua";
         std::filesystem::path filePath = directoryPath + "\\" + filename;
 
