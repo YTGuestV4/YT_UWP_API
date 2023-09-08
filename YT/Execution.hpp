@@ -10,14 +10,14 @@
 
 namespace Execution
 {
-    void run_script(uintptr_t rl, lua_State* l, const std::string& source)
+    void run_script(uintptr_t rl, lua_State* l, const std::string& script)
     {
         bytecode_encoder_t enc;
         const char* name = "";
-        std::string bytecode = Luau::compile("spawn(function()\n" + source + "\nend)", {}, {}, &enc);
+        std::string bytecode = Luau::compile("task.spawn(function()\n" + script + "\nend)", {}, {}, &enc);
         size_t bytecodeSize = 0;
 
-        char* error_only = luau_compile(source.c_str(), strlen(source.c_str()), NULL, &bytecodeSize);
+        char* error_only = luau_compile(script.c_str(), strlen(script.c_str()), NULL, &bytecodeSize);
         if (bytecode.at(0) != 0)
         {
             if (luau_load(l, name, error_only, bytecodeSize, 0))
