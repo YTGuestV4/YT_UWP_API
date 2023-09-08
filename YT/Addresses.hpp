@@ -14,6 +14,7 @@ int ASLR(uintptr_t address)
 {
     return address - 0x400000 + reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
 }
+
 int aslr_0(uintptr_t address)
 {
     return address + reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
@@ -47,15 +48,11 @@ namespace Addresses
     get_global_state get_global_state_2 = (get_global_state)(ASLR(0x8555F0)); // Script Start or %s %s detected as malicious.  %s will not run. // most be in line 825 pseudocode
 
     uint64_t check_PlaceId = aslr_0(0x320F0C0); // Windows10Universal.exe+320F0C0
-
 }
-
 
 namespace Deobfuscation {
     uintptr_t luastate(uintptr_t state)
     {
-        /*   v22 = (168 * sub_8555C0() + this + 276);
-             return *v22 - v22;*/
         auto gay = 168 * 0 + state + 276; // remeber to check + or - or ^
         auto girl = gay - *reinterpret_cast<uintptr_t*>(gay);
         return girl;
