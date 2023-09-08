@@ -77,7 +77,7 @@ int main()
 	print_f(0, "pass: get_robloxstate");
 
 	Lua::setlevel(exthread, 8);
-	print_f(0, "Pass: Bypass LVL!");
+	print_f(0, "Pass: Set_LVL!");
 
 	std::thread teleport_handler_thread(start_in);
 	teleport_handler_thread.detach();
