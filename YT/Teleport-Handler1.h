@@ -63,11 +63,11 @@ int autoexec() {
 void URS()
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    Addresses::r_lua_print(0, "YT: Start");
     exthread = (uintptr_t)LuaState::get_roblox_state();
-    Lua::Bypass(exthread);
     Lua::setlevel(exthread, 8);
     autoexec();
-    Addresses::r_lua_print(0, "YT Ready");
+    Addresses::r_lua_print(0, "YT: Ready");
 }
 
 void detected_teleport_in() {
@@ -89,6 +89,9 @@ void start_in() {
         if (!teleport) {
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             detected_teleport_in();
+        }
+        else {
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
         }
     }
 }
