@@ -11,6 +11,12 @@ Becareful Using this tool, i am warning you to use this tool for Education Purpo
 
 Our discord server 'https://discord.gg/YQNAcbgenG'
 
+# UWP Version 2.592.586.0
+
+u can download it here: 
+
+https://github.com/Yakov5776/RobloxUWP-StoreLib/releases/download/ROBLOXCORPORATION.ROBLOX_2.592.586.0_neutral_55nm5eh3cm0pr/ROBLOXCORPORATION.ROBLOX_2.592.586.0_neutral_._55nm5eh3cm0pr.msixbundle
+
 # Dumper  
 
 if you don't know every roblox update we need to update address / offest. so now you can use Dumper for it 
