@@ -360,14 +360,14 @@ namespace API
 
     int getrenv(uintptr_t rl)
     {
-        lua_pushvalue((lua_State*)LuaState::get_robloxstate(), LUA_GLOBALSINDEX);
-        lua_xmove((lua_State*)LuaState::get_robloxstate(), (lua_State*)rl, 1);
+        lua_pushvalue((lua_State*)LuaState::get_roblox_state(), LUA_GLOBALSINDEX);
+        lua_xmove((lua_State*)LuaState::get_roblox_state(), (lua_State*)rl, 1);
         return 1;
     }
 
     int getsenv(lua_State* rl) {
-        lua_pushvalue((lua_State*)LuaState::get_robloxstate(), LUA_GLOBALSINDEX);
-        lua_xmove((lua_State*)LuaState::get_robloxstate(), (lua_State*)rl, -1);
+        lua_pushvalue((lua_State*)LuaState::get_roblox_state(), LUA_GLOBALSINDEX);
+        lua_xmove((lua_State*)LuaState::get_roblox_state(), (lua_State*)rl, -1);
         return 1;
         return 1;
     }
